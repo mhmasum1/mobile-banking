@@ -23,15 +23,21 @@ document.getElementById("add-money-btn").addEventListener('click', function (eve
 
 })
 
-// Toggoling
+// Toggoling with shortcut
 document.getElementById("add-money").addEventListener("click", function () {
-    document.getElementById("add-money-form").style.display = "block"
-    document.getElementById("cash-out-form").style.display = "none"
+    const forms = document.getElementsByClassName("form")
+    for (const form of forms) {
+        form.style.display = "none";
+    }
+    document.getElementById("add-money-form").style.display = "block";
 });
 
 document.getElementById("cash-out").addEventListener("click", function () {
-    document.getElementById("cash-out-form").style.display = "block"
-    document.getElementById("add-money-form").style.display = "none"
+    const forms = document.getElementsByClassName("form")
+    for (const form of forms) {
+        form.style.display = "none";
+    }
+    document.getElementById("cash-out-form").style.display = "block";
 
 });
 
