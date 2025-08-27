@@ -1,4 +1,5 @@
 const validPin = 123;
+const transactionData = [];
 
 // Add Money Section
 
@@ -21,25 +22,15 @@ document.getElementById("add-money-btn").addEventListener('click', function (eve
     const totalAmount = aviableBalance + addAmount;
     document.getElementById("aviable-balance").innerText = totalAmount;
 
+    const data = {
+        name: "Add Money",
+        date: new Date().toLocaleTimeString()
+    }
+    transactionData.push(data);
+    console.log(transactionData);
+
 })
 
-// Toggoling with shortcut
-document.getElementById("add-money").addEventListener("click", function () {
-    const forms = document.getElementsByClassName("form")
-    for (const form of forms) {
-        form.style.display = "none";
-    }
-    document.getElementById("add-money-form").style.display = "block";
-});
-
-document.getElementById("cash-out").addEventListener("click", function () {
-    const forms = document.getElementsByClassName("form")
-    for (const form of forms) {
-        form.style.display = "none";
-    }
-    document.getElementById("cash-out-form").style.display = "block";
-
-});
 
 // CashOut Section
 
@@ -62,4 +53,74 @@ document.getElementById("cash-out-btn").addEventListener('click', function (even
     const substractAmount = aviableBalance - cashOutMoney;
     document.getElementById("aviable-balance").innerText = substractAmount;
 
+    const data = {
+        name: "Cash Out",
+        date: new Date().toLocaleTimeString()
+    }
+    transactionData.push(data);
+    console.log(transactionData);
+
 })
+
+
+// Transaction Section
+
+document.getElementById("transaction").addEventListener("click", function () {
+    const transactionContainer = document.getElementById("transaction-container")
+    transactionContainer.innerHTML = "";
+    for (const data of transactionData) {
+        const div = document.createElement("div")
+        div.innerHTML = `
+        <div id="transaction-container" class="mt-2">
+            <div class="flex justify-between items-center bg-white rounded-lg">
+                <div class="flex items-center  gap-3 p-3">
+
+                    <div>
+
+                        <img class=" border-2 p-2 rounded-full " src="./assets/wallet1.png" alt="">
+                    </div>
+                    <div>
+                        <h1>${data.name}</h1>
+                        <p>${data.date}</p>
+                    </div>
+
+                </div>
+                <div class="mr-5">
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </div>
+            </div>
+        </div>
+        `
+        transactionContainer.appendChild(div)
+
+    }
+
+
+
+})
+
+// Toggoling with shortcut
+document.getElementById("add-money").addEventListener("click", function () {
+    const forms = document.getElementsByClassName("form")
+    for (const form of forms) {
+        form.style.display = "none";
+    }
+    document.getElementById("add-money-form").style.display = "block";
+});
+
+document.getElementById("cash-out").addEventListener("click", function () {
+    const forms = document.getElementsByClassName("form")
+    for (const form of forms) {
+        form.style.display = "none";
+    }
+    document.getElementById("cash-out-form").style.display = "block";
+
+});
+document.getElementById("transaction").addEventListener("click", function () {
+    const forms = document.getElementsByClassName("form")
+    for (const form of forms) {
+        form.style.display = "none";
+    }
+    document.getElementById("transaction-form").style.display = "block";
+
+});
